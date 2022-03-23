@@ -6,15 +6,15 @@
   
   <title>LeetCode Day 1 | Chris Learning Note</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="This is not the first day of my Leetcode trip, but the first day I start diarying my leaning in Leetcode Challenages!">
+  <meta name="description" content="This is not the first day of my Leetcode trip, but the first day I start diarying my leaning in Leetcode Challenages! I will  try to note every points I have met during this trip. By this way, I can a">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode Day 1">
 <meta property="og:url" content="https://chrislovesheffield.github.io/chrisIslearning.github.io/2022/03/23/LeetCode-Day-1/index.html">
 <meta property="og:site_name" content="Chris Learning Note">
-<meta property="og:description" content="This is not the first day of my Leetcode trip, but the first day I start diarying my leaning in Leetcode Challenages!">
+<meta property="og:description" content="This is not the first day of my Leetcode trip, but the first day I start diarying my leaning in Leetcode Challenages! I will  try to note every points I have met during this trip. By this way, I can a">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-03-23T08:43:56.000Z">
-<meta property="article:modified_time" content="2022-03-23T08:48:16.542Z">
+<meta property="article:modified_time" content="2022-03-23T09:27:37.109Z">
 <meta property="article:author" content="Chris Huang">
 <meta name="twitter:card" content="summary">
   
@@ -99,12 +99,33 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>This is not the first day of my Leetcode trip, but the first day I start diarying my leaning in Leetcode Challenages!</p>
+        <p>This is not the first day of my Leetcode trip, but the first day I start diarying my leaning in Leetcode Challenages! I will  try to note every points I have met during this trip. By this way, I can also help those person like me, meanwhile clearify the thought when I came up some interesting points.</p>
+<h2 id="Best-Sightseeing-Pair"><a href="#Best-Sightseeing-Pair" class="headerlink" title="Best Sightseeing Pair"></a><a target="_blank" rel="noopener" href="https://leetcode.com/problems/best-sightseeing-pair/">Best Sightseeing Pair</a></h2><p>You are given an integer array <code>values</code> where values[i] represents the value of the sightseeing spot. Two sightseeing spots <code>i</code> and <code>j</code> have a <strong>distance</strong> <code>j - i</code> between them.</p>
+<p>The score of a pair (<code>i &lt; j</code>) of sightseeing spots is <code>values[i] + values[j] + i - j</code>: the sum of the values of the sightseeing spots, minus the distance between them.</p>
+<p>Return  <em>the maximum score of a pair of sightseeing spots</em> .</p>
+<p><code>values[i] + values[j] + i - j</code> is also equal to values[i] + i + values[j]-j</p>
+<p>As a result. this question also can be seem as find the most values[i] + i and values[j]-j.</p>
+<p>When scanning every elemnet in the values, choose  most values[i] + i and values[j]-j.</p>
+<p>To be noted, the max is decreasing as we i increasing;</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> var maxScoreSightseeingPair = function(values) &#123;</span><br><span class="line">    let prevMax = values[0], max = 0;</span><br><span class="line">    for(let i = 1; i&lt;values.length;i++ )&#123;</span><br><span class="line">        prevMax--;</span><br><span class="line">        max = Math.max(max, prevMax + values[i]);</span><br><span class="line">        prevMax = Math.max(prevMax, values[i]);</span><br><span class="line">    &#125;</span><br><span class="line">	return max</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Best-Time-to-Buy-and-Sell-Stock-II"><a href="#Best-Time-to-Buy-and-Sell-Stock-II" class="headerlink" title="Best Time to Buy and Sell Stock II"></a><a target="_blank" rel="noopener" href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/">Best Time to Buy and Sell Stock II</a></h2><p>You are given an integer array <code>prices</code> where <code>prices[i]</code> is the price of a given stock on the <code>i&lt;sup&gt;th&lt;/sup&gt;</code> day.</p>
+<p>On each day, you may decide to buy and&#x2F;or sell the stock. You can only hold <strong>at most one</strong> share of the stock at any time. However, you can buy it then immediately sell it on the  <strong>same day</strong> .</p>
+<p>Find and return  <em>the <strong>maximum</strong> profit you can achieve</em> .</p>
+<pre><strong>Input:</strong> prices = [7,1,5,3,6,4]
+<strong>Output:</strong> 7
+<strong>Explanation:</strong> Buy on day 2 (price = 1) and sell on day 3 (price = 5), profit = 5-1 = 4.
+Then buy on day 4 (price = 3) and sell on day 5 (price = 6), profit = 6-3 = 3.
+Total profit is 4 + 3 = 7.</pre>
+
+<p>Explannation:</p>
+<p>When meeting the lower price, we buy it and sell it when meet the higher price.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">var</span> maxProfit = <span class="keyword">function</span>(<span class="params">prices</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> curMin = prices[<span class="number">0</span>], max =<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i =<span class="number">1</span>; i&lt; prices.<span class="property">length</span>;i++)&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(curMin &lt; prices[i])&#123;</span><br><span class="line">            max+= prices[i] - curMin;</span><br><span class="line">            curMin = prices[i]</span><br><span class="line">        &#125;<span class="keyword">else</span> curMin = <span class="title class_">Math</span>.<span class="title function_">min</span>(curMin, prices[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> max</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://chrislovesheffield.github.io/chrisIslearning.github.io/2022/03/23/LeetCode-Day-1/" data-id="cl13bol32000000mq8x9terxy" data-title="LeetCode Day 1" class="article-share-link">Share</a>
+      <a data-url="https://chrislovesheffield.github.io/chrisIslearning.github.io/2022/03/23/LeetCode-Day-1/" data-id="cl13d4azd0000ngmq1yv0fct8" data-title="LeetCode Day 1" class="article-share-link">Share</a>
       
       
       
